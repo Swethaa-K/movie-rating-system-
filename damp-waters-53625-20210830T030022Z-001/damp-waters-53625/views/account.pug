@@ -1,0 +1,36 @@
+extends base
+
+block content 
+    <div class="container text-light d-flext justify-content-center align-items-center text-center">
+        <h1 class='text-center my-5'>Account Page</h1>
+        
+        <div>
+            <div class='row'>
+                <div class='col-md-6 d-flext justify-content-center align-items-center text-center'>
+                    <p><i class="fas fa-user-circle  profile"></i></p>
+                    <h3>#{user.name}</h3>
+                    <h5>User Type : #{user.role}</h5>
+                    <h5>Total Votes : #{user.totalVotes}</h5>
+                    if user.totalVotes< 10
+                        <p>you are <span class='text-danger vote-left'>#{10-user.totalVotes}</span> away from becoming expert user</p>
+                    <p class='text-muted m-0'>For every movie you rate, you get 1 vote.</p>
+                    <p class='text-muted m-0'> Experts have more weightage than normal user</p>
+
+                </div>
+                <div class='col-md-6'>
+                    <form action="/v1/users/submit-user-data" method="post">
+                        <div class="form-group">
+                            label(for="name") Name
+                            input.form-control#name( type="text" value=`${user.name}` name='name')
+                        </div>
+                        <div class="form-group">
+                            label(for="exampleInputEmail1") Email address
+                            input.form-control#exampleInputEmail1( type="email" value=`${user.email}` name='email')
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>

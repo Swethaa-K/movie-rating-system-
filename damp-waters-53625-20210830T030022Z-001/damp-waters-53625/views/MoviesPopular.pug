@@ -1,0 +1,49 @@
+extends base
+
+block content
+    <main>
+        
+        <div class="container text-center">
+            <h1 class='text-light mb-4'>#{title}</h1>
+            //- <a href="/v1/movies/?page=2"class='text-light'>Next Page</a>
+            if currentPage==1 && totalPages==1
+                
+            else
+                if currentPage==1
+                    a.m-2.nextPage(href=`${route}page=${currentPage+1}`) Next Page <i class="fas fa-chevron-circle-right"></i>
+                if currentPage==totalPages
+                    a.m-2.prevPage(href=`${route}page=${currentPage-1}`) <i class="fas fa-chevron-circle-left"></i> Prev Page
+                if currentPage !=1 && currentPage !=totalPages
+                    a.m-2.prevPage(href=`${route}page=${currentPage-1}`)  <i class="fas fa-chevron-circle-left"></i> Prev Page
+                    a.m-2.nextPage(href=`${route}page=${currentPage+1}`) Next Page <i class="fas fa-chevron-circle-right"></i>
+                
+
+            <div class="row my-5">
+                each movie in movies
+                    <div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center mt-3 one-movie">
+                        <div class="card" style="width: 18rem;">
+                            //- <img src="https://image.tmdb.org/t/p/w500" class="card-img-top" alt="...">
+                            img.card-img-top(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}`, alt="")
+                            <div class="card-body">
+                                <h5 class="card-title">#{movie.title}</h5>
+                                //- <p class="card-text">#{movie.rating}</p>
+                                a.btn.m-2.detailBtn(href=`/v1/movie/${movie.id}`) Get Details
+                                a.trailer.btn.btn-dark.trailerButton( data-movie-id=`${movie.id}`) Watch Trailer
+                                //- <a  class="trailer btn btn-dark trailerButton " data-movie-id=${movie.id}></a>
+                            </div>
+                        </div> 
+                    </div>
+            </div>
+
+            if currentPage==1 && totalPages==1
+                
+            else
+                if currentPage==1
+                    a.m-2.nextPage(href=`${route}page=${currentPage+1}`) Next Page <i class="fas fa-chevron-circle-right"></i>
+                if currentPage==totalPages
+                    a.m-2.prevPage(href=`${route}page=${currentPage-1}`) <i class="fas fa-chevron-circle-left"></i> Prev Page
+                if currentPage !=1 && currentPage !=totalPages
+                    a.m-2.prevPage(href=`${route}page=${currentPage-1}`)  <i class="fas fa-chevron-circle-left"></i> Prev Page
+                    a.m-2.nextPage(href=`${route}page=${currentPage+1}`) Next Page <i class="fas fa-chevron-circle-right"></i>
+        </div>
+    </main>

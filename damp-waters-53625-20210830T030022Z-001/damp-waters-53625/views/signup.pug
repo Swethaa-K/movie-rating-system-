@@ -1,0 +1,32 @@
+extends base
+
+block content
+    <div class="container text-center text-light d-flex justify-content-center">
+        
+        <form class="signup-form text-left">
+            <h4 class='my-3  text-center'>Please fill the details</h4>
+            <div class="form-group">
+                <label for="NameId">Name</label>
+                <input  type="text" class="form-control" id="nameId" placeholder="Enter Full Name" required>
+            </div>
+            <div class="form-group">
+                <label for="emailId">Email address</label>
+                <input  type="email" class="form-control" id="emailId" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordId">Password</label>
+                <input type="password" class="form-control" id="passwordId" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="passConfirmId">Confirm-Password</label>
+                <input  type="password" class="form-control" id="passConfirmId" placeholder="Enter your password again" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+//-     {
+//-     "name":"prashant",
+//-     "email":"prashant@gmail.com",
+//-     "password":"123456789",
+//-     "passwordConfirm":"123456789"
+//- }

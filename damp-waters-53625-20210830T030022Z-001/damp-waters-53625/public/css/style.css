@@ -1,0 +1,153 @@
+body {
+    background: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar li a {
+    background: black;
+    color: white;
+    margin-right: 15px;
+}
+
+.navbar .navbar-brand {
+    color: red;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.navbar .header-profile {
+    font-size: 20px;
+}
+
+.navbar .dropdown-menu {
+    padding: 0;
+    border: 1px solid white;
+}
+
+
+.form-control:focus {
+    border-color: #FF0000;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.form-control::-webkit-input-placeholder {
+    color: red;
+}
+
+
+.one-movie .card {
+    background-color: black;
+    color: white;
+    border: .3px solid red;
+    transition: all 1s ease;
+    overflow: hidden;
+    /* height: 550px; */
+}
+
+
+.one-movie .card:hover {
+    transform: scale(1.05);
+}
+
+.one-movie .card img {
+    height: 300px;
+
+}
+
+a.m-2.nextPage,
+a.m-2.prevPage {
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    background-color: red;
+    border-radius: 5%;
+}
+
+a.m-2.nextPage:hover,
+a.m-2.prevPage:hover {
+    color: white;
+    opacity: 0.9;
+
+}
+
+.detailBtn {
+    background: red;
+    color: white;
+}
+
+.detailBtn:hover {
+    color: red;
+    border: 2px solid red;
+    background: black;
+}
+
+.trailerButton:hover {
+    background: red;
+
+}
+
+
+/* movie detail page */
+.movie-detail {
+    color: white;
+}
+
+.detail-poster {
+    height: 80%;
+    width: 80%;
+}
+
+
+/* sinup form */
+.signup-form {
+    width: 70%;
+    max-width: 600px;
+}
+
+/* login form */
+.login-form {
+    width: 70%;
+    max-width: 600px;
+}
+
+
+/* accoutn detail */
+.profile {
+    font-size: 100px;
+}
+
+.vote-left {
+    font-size: 1.4em
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+footer {
+    background-color: red;
+}
+
+footer h4 {
+    margin-bottom: 1rem;
+}
+
+footer .fab {
+    transition: all .4s;
+}
+
+footer .fab:hover {
+    font-size: 2.3rem;
+
+}

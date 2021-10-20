@@ -1,0 +1,28 @@
+extends base
+
+block content 
+    <div class='container text-light text-center'>
+        <h3 class=' mb-3'>#{(reviewUpdating.user.name).split(' ')[0]}, you can Edit your Review here</h3>
+        form.text-left(action=`/v1/movie/${MovieId}/RateMovie/${reviewUpdating.id}/update` method="post")
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Choose on a scale of 1-10</label>
+                <select class="form-control" id="exampleFormControlSelect1" name='rating'>
+                    <option value="" selected disabled>#{reviewUpdating.rating}</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9'>9</option>
+                    <option value='10'>10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='review'>#{reviewUpdating.review}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </div>

@@ -1,0 +1,154 @@
+extends base
+
+block content
+    <div class="container movie-detail mt-5 text-center">
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          img.card-img-top.detail-poster(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}`, alt="")
+        //-   <img src="https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg" alt="">
+        </div>
+        <div class="col-md-6">
+          <h1 class="mt-2">#{movie.title}</h1>
+
+          //-============================================== Logic part and star printing==========================================================
+          - var sum = 0;
+          - var expertSum=0;
+          - var numOfExpert=0;
+          - var normalUserSum=0;
+          - var numOfNormalUser=0;
+
+          each review in reviews
+            if review.user.role=='user'
+              - normalUserSum= normalUserSum+review.rating
+              - numOfNormalUser=numOfNormalUser+1
+            if review.user.role=='expert'
+              -expertSum=expertSum+review.rating
+              -numOfExpert=numOfExpert+1
+            - sum=sum+review.rating
+
+          - var finalRating=sum/(reviews.length)
+          - var expertAverage=0;
+          - var normalUserAverage=0;
+          - var netraRating=0;
+          if numOfExpert !=0
+            - expertAverage= expertSum/numOfExpert
+          if numOfNormalUser!=0
+            - normalUserAverage=normalUserSum/numOfNormalUser
+          
+          if numOfNormalUser !=0 && numOfExpert !=0
+            - netraRating =(2*expertAverage+normalUserAverage)/3
+          else if numOfNormalUser==0
+            - netraRating =expertAverage
+          else
+            - netraRating =normalUserAverage
+          
+
+
+          - for (var i = 0; i < parseInt(netraRating); ++i) {
+            <i class="fas fa-star text-danger pr-1"></i>
+          - }
+          - for (var i = 0; i <10- parseInt(netraRating); ++i) {
+            <i class="far fa-star text-danger pr-1"></i>
+          - }
+          if netraRating!=0
+            <p>Proffer Rating : #{Math.round(netraRating* 10) / 10}</p>
+          else
+            <p class="mb-0">PROFFER Rating : 0 </p>
+            <p class="text-secondary"> No Ratings yet. Be the first one</p>
+
+
+          - for (var i = 0; i < parseInt(finalRating); ++i) {
+            <i class="fas fa-star text-danger pr-1"></i>
+          - }
+          - for (var i = 0; i <10- parseInt(finalRating); ++i) {
+            <i class="far fa-star text-danger pr-1"></i>
+          - }
+          if finalRating!=0
+            <p class='mb-0'>IMDB Rating : #{Math.round(finalRating* 10) / 10}</p>
+            <p class="text-secondary">the rating may differ from original due to variation in input data</p>
+          else
+            <p class="mb-0">IMDB Rating: 0</p>
+            <p class="text-secondary"> No Ratings yet. Be the first one</p>
+
+
+
+          - for (var i = 0; i < parseInt(expertAverage); ++i) {
+            <i class="fas fa-star text-danger pr-1"></i>
+          - }
+          - for (var i = 0; i <10- parseInt(expertAverage); ++i) {
+            <i class="far fa-star text-danger pr-1"></i>
+          - }
+          if expertAverage!=0
+            <p>Expert Rating : #{Math.round(expertAverage* 10) / 10}</p>
+          else
+            <p class="mb-0">Expert Rating : 0 </p>
+            <p class="text-secondary"> No Ratings yet. Be the first one</p>
+
+
+
+          - for (var i = 0; i < parseInt(normalUserAverage); ++i) {
+            <i class="fas fa-star text-danger pr-1"></i>
+          - }
+          - for (var i = 0; i <10- parseInt(normalUserAverage); ++i) {
+            <i class="far fa-star text-danger pr-1"></i>
+          - }
+          if normalUserAverage!=0
+            <p>Users Rating : #{Math.round(normalUserAverage* 10) / 10}</p>
+          else
+            <p class="mb-0">Users Rating : 0 </p>
+            <p class="text-secondary"> No Ratings yet. Be the first one</p>
+
+          //- =============================================================================================================================
+
+          <div class=m-2>
+            <p class='d-inline'>Genre : </p>
+            each genre in movie.genres
+               <p class="m-0 d-inline mr-2">#{genre.name},</p>
+          </div>
+          
+          a.btn.btn-danger.mt-3.d-block(href=`/v1/movie/${movie.id}/RateMovie`) Rate This Movie
+          <p class="mt-3">#{movie.overview}</p>
+          
+          <p>RUNTIME: #{parseInt(movie.runtime/60)}hr #{movie.runtime%60}min</p>
+          <p>RELEASE DATE : #{movie.release_date}</p>
+          
+          if movie.budget==0
+            <p>BUDGET : Unknown</p>
+          else
+            <p>BUDGET : $#{movie.budget}</p>
+
+          if movie.revenue==0
+            <p>REVENUE : Unknown</p>
+          else
+            <p>REVENUE : $#{movie.budget}</p>
+          
+          if movie.production_companies.name
+            <h5 class="mt-2">PRODUCTION: #{movie.production_companies}</h5>
+          else
+            h5 Production: Unknown
+
+        </div>
+      </div>
+
+
+      <h3 class="mt-5">Users Reviews</h3>
+      if reviews.length ==0
+        <h5 class="my-3 text-secondary">No Reviews Yet. Post the first review</h5>
+      else
+        for review in reviews
+          <div class="text-left mb-5">
+            <h5>#{review.user.name}</h5>
+            - for (var i = 0; i < review.rating; ++i) {
+              <i class="fas fa-star text-danger pr-1"></i>
+            - }
+            - for (var i = 0; i < 10-review.rating; ++i) {
+              <i class="far fa-star text-danger pr-1"></i>
+            - }
+            <p>#{review.review}</p>
+            if user && String(review.user._id)===String(user._id)
+              a.btn.btn-dark.mr-3(href=`/v1/movie/${movie.id}/RateMovie/${review.id}/update`) Edit
+              a.btn.btn-dark(href=`/v1/movie/${movie.id}/RateMovie/${review.id}/delete`) Delete
+              
+          </div>
+        
+    </div>
