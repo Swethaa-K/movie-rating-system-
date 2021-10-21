@@ -1,4 +1,4 @@
-const express=require('express');
+const express=require('express'); // functions or madules or variables assigned
 const reviewController=require('./../controllers/reviewController');
 const authController=require('./../controllers/authController')
 const router=express.Router();
