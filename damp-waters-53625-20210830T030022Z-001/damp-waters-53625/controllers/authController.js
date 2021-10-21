@@ -24,7 +24,7 @@ exports.signup=async(req,res,next)=>{
             email:req.body.email,
             password:req.body.password,
             passwordConfirm:req.body.passwordConfirm
-        });//ye method secure nai hai isliye hum aage ise change karenge
+        });//this method is not secure so need to change ahead
     
         const token=jwt.sign({id:newUser._id},process.env.JWT_SECRET,{
             expiresIn: process.env.JWT_EXPIRES_IN
