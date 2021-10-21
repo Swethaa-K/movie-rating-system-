@@ -1,4 +1,4 @@
-const express=require('express'); // functions or madules or variables assigned
+const express=require('express'); // functions or modules or variables assigned
 const reviewController=require('./../controllers/reviewController');
 const authController=require('./../controllers/authController')
 const router=express.Router();
